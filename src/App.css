@@ -1,0 +1,77 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+::-webkit-scrollbar {
+  scroll-behavior: smooth;
+  display: none;
+}
+
+body {
+  background-color: black;
+  color: white;
+  /* overflow: hidden; */
+}
+
+.fontUse {
+  font-family: "Roboto", sans-serif;
+}
+
+@keyframes floatRobot {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.floating-robot {
+  animation: floatRobot 4s ease-in-out infinite;
+}
+
+@keyframes floatVideo {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(5px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.floating-video {
+  animation: floatVideo 4s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0% {
+    transform: translatex(0) rotate(0deg);
+  }
+  50% {
+    transform: translatex(-5px) rotate(2deg);
+  }
+  100% {
+    transform: translatex(0) rotate(0deg);
+  }
+}
+
+.floating-card {
+  animation: floatCard 4s ease-in-out infinite;
+}
+/* midea queary */
+@media (max-width: 1021px) {
+  .phoneview {
+    display: none;
+  }
+  .openDiv {
+    display: flex;
+  }
+  .closeDiv{
+    display: none;
+  }
+}
