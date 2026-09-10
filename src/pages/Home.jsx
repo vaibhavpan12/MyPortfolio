@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-[100vw]  h-screen flex flex-col justify-between">
+    <div className="w-[100vw]  h-screen flex flex-col justify-center">
       <div className="w-[100%] bg h-[10%]">
         <Navbar />
       </div>
@@ -436,7 +436,7 @@ export default function Home() {
           </motion.div>
         </div>
       </div>
-      <div className="w-[100%] h-[10%] phoneview justify-center flex items-end ">
+      {/* <div className="w-[100%] h-[10%] phoneview justify-center flex items-end ">
         <div className="w-[100%] md:gap-0 gap-10 flex text-2xl md:flex-row flex-col justify-between items-center px-10">
           <motion.a
             initial={{ marginLeft: -50, opacity: 0 }}
@@ -473,7 +473,7 @@ export default function Home() {
             <h1 className="font-bold underline fontUse">Github</h1>
           </motion.a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

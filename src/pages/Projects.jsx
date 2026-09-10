@@ -2,14 +2,9 @@ import React from "react";
 import images from "../images";
 import Navbar from "../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowUpRightFromSquare,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  faGithub,
-  faGooglePlay,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faGooglePlay } from "@fortawesome/free-brands-svg-icons";
 
 const projects = [
   {
