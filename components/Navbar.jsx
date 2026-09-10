@@ -36,7 +36,6 @@ export default function Navbar() {
             justify-between
           "
         >
-
           {/* ================= MENU BUTTON ================= */}
           <motion.button
             whileHover={{ scale: 1.08 }}
@@ -88,15 +87,11 @@ export default function Navbar() {
                   exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <FontAwesomeIcon
-                    icon={faBars}
-                    className="text-xl"
-                  />
+                  <FontAwesomeIcon icon={faBars} className="text-xl" />
                 </motion.div>
               )}
             </AnimatePresence>
           </motion.button>
-
 
           {/* ================= NAME ================= */}
           <motion.div
@@ -121,7 +116,6 @@ export default function Navbar() {
           >
             Vaibhav Panchal
           </motion.div>
-
 
           {/* ================= PROFILE ================= */}
           <motion.div
@@ -178,10 +172,8 @@ export default function Navbar() {
               "
             />
           </motion.div>
-
         </div>
       </header>
-
 
       {/* ================= BACKDROP ================= */}
       <AnimatePresence>
@@ -202,7 +194,6 @@ export default function Navbar() {
           />
         )}
       </AnimatePresence>
-
 
       {/* ================= SIDE MENU ================= */}
       <AnimatePresence>
@@ -253,10 +244,8 @@ export default function Navbar() {
               justify-between
             "
           >
-
             {/* ================= MENU HEADER ================= */}
             <div>
-
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -271,7 +260,6 @@ export default function Navbar() {
                   Explore<span className="text-gray-500">.</span>
                 </h2>
               </motion.div>
-
 
               {/* ================= NAV ITEMS ================= */}
               <motion.ul
@@ -288,7 +276,6 @@ export default function Navbar() {
                 }}
                 className="flex flex-col gap-2"
               >
-
                 {navItems.map((item) => (
                   <motion.li
                     key={item.name}
@@ -306,7 +293,6 @@ export default function Navbar() {
                       },
                     }}
                   >
-
                     <NavLink
                       to={item.path}
                       onClick={closeMenu}
@@ -350,14 +336,10 @@ export default function Navbar() {
                         </>
                       )}
                     </NavLink>
-
                   </motion.li>
                 ))}
-
               </motion.ul>
-
             </div>
-
 
             {/* ================= MENU FOOTER ================= */}
             <motion.div
@@ -371,7 +353,6 @@ export default function Navbar() {
                 border-white/[0.07]
               "
             >
-
               <p className="text-xs text-gray-600 fontUse">
                 Full Stack Developer
               </p>
@@ -379,9 +360,7 @@ export default function Navbar() {
               <p className="text-xs text-gray-500 fontUse mt-1">
                 Building things for the web.
               </p>
-
             </motion.div>
-
           </motion.aside>
         )}
       </AnimatePresence>

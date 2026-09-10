@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-[100vw]  h-screen flex flex-col justify-center">
+    <div className="w-[100vw]  h-screen flex flex-col justify-between gap-10">
       <div className="w-[100%] bg h-[10%]">
         <Navbar />
       </div>
