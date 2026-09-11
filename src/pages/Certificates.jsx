@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 function Certificates() {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="w-[100%] px-10 py-10 gap-10 h-[100%] flex lg:flex-row flex-col justify-center items-center">
         <div className="lg:w-[50%] w-[100%] flex justify-center items-center">
           <img

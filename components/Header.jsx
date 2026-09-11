@@ -35,65 +35,41 @@ function CreativeNav() {
       ========================= */}
 
       <header className="creative-nav">
-
         {/* LOGO */}
 
-        <Link
-          to="/"
-          className="creative-logo"
-        >
+        <Link to="/" className="creative-logo">
           <span className="logo-circle"></span>
 
           <span>VP</span>
         </Link>
 
-
         {/* CENTER */}
 
         <div className="nav-middle">
+          <span>Frontend Developer</span>
 
-          <span>
-            Frontend Developer
-          </span>
-
-          <span>
-            India
-          </span>
-
+          <span>India</span>
         </div>
-
 
         {/* MENU */}
 
         <button
           type="button"
-          className={`menu-button ${
-            menuOpen ? "menu-active" : ""
-          }`}
+          className={`menu-button ${menuOpen ? "menu-active" : ""}`}
           onClick={() => setMenuOpen(true)}
         >
+          <span>Menu</span>
 
-          <span>
-            Menu
-          </span>
-
-          <span className="menu-icon">
-            ↗
-          </span>
-
+          <span className="menu-icon">↗</span>
         </button>
-
       </header>
-
 
       {/* =========================
           MENU OVERLAY + SIDEBAR
       ========================= */}
 
       <AnimatePresence>
-
         {menuOpen && (
-
           <motion.div
             className="creative-menu-overlay"
             initial={{
@@ -108,11 +84,8 @@ function CreativeNav() {
             transition={{
               duration: 0.35,
             }}
-            onClick={() =>
-              setMenuOpen(false)
-            }
+            onClick={() => setMenuOpen(false)}
           >
-
             {/* SIDEBAR */}
 
             <motion.aside
@@ -130,158 +103,92 @@ function CreativeNav() {
                 duration: 0.65,
                 ease: [0.76, 0, 0.24, 1],
               }}
-              onClick={(e) =>
-                e.stopPropagation()
-              }
+              onClick={(e) => e.stopPropagation()}
             >
-
               {/* SIDEBAR TOP */}
 
               <div className="sidebar-top">
-
                 <Link
                   to="/"
                   className="creative-logo"
-                  onClick={() =>
-                    setMenuOpen(false)
-                  }
+                  onClick={() => setMenuOpen(false)}
                 >
-
                   <span className="logo-circle"></span>
 
                   <span>VP</span>
-
                 </Link>
-
 
                 <button
                   className="sidebar-close"
-                  onClick={() =>
-                    setMenuOpen(false)
-                  }
+                  onClick={() => setMenuOpen(false)}
                 >
+                  <span>Close</span>
 
-                  <span>
-                    Close
-                  </span>
-
-                  <span>
-                    ×
-                  </span>
-
+                  <span>×</span>
                 </button>
-
               </div>
-
 
               {/* MENU TITLE */}
 
               <div className="sidebar-heading">
+                <span>Navigation</span>
 
-                <span>
-                  Navigation
-                </span>
-
-                <span>
-                  (04)
-                </span>
-
+                <span>(04)</span>
               </div>
-
 
               {/* LINKS */}
 
               <nav className="sidebar-links">
-
-                {menuItems.map(
-                  (item, index) => (
-
-                    <motion.div
-                      key={item.name}
-                      initial={{
-                        opacity: 0,
-                        y: 35,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      transition={{
-                        delay:
-                          0.2 +
-                          index * 0.08,
-                        duration: 0.6,
-                        ease:
-                          "easeOut",
-                      }}
+                {menuItems.map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{
+                      opacity: 0,
+                      y: 35,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      delay: 0.2 + index * 0.08,
+                      duration: 0.6,
+                      ease: "easeOut",
+                    }}
+                  >
+                    <NavLink
+                      to={item.path}
+                      onClick={() => setMenuOpen(false)}
+                      className="sidebar-link"
                     >
+                      <span className="sidebar-number">{item.number}</span>
 
-                      <NavLink
-                        to={item.path}
-                        onClick={() =>
-                          setMenuOpen(false)
-                        }
-                        className="sidebar-link"
-                      >
+                      <span className="sidebar-name">{item.name}</span>
 
-                        <span className="sidebar-number">
-                          {item.number}
-                        </span>
-
-                        <span className="sidebar-name">
-                          {item.name}
-                        </span>
-
-                        <span className="sidebar-arrow">
-                          ↗
-                        </span>
-
-                      </NavLink>
-
-                    </motion.div>
-
-                  )
-                )}
-
+                      <span className="sidebar-arrow">↗</span>
+                    </NavLink>
+                  </motion.div>
+                ))}
               </nav>
-
 
               {/* SIDEBAR BOTTOM */}
 
               <div className="sidebar-bottom">
-
                 <div>
+                  <span>Available for</span>
 
-                  <span>
-                    Available for
-                  </span>
-
-                  <strong>
-                    Freelance work
-                  </strong>
-
+                  <strong>Freelance work</strong>
                 </div>
 
                 <div>
+                  <span>Based in</span>
 
-                  <span>
-                    Based in
-                  </span>
-
-                  <strong>
-                    India
-                  </strong>
-
+                  <strong>India</strong>
                 </div>
-
               </div>
-
             </motion.aside>
-
           </motion.div>
-
         )}
-
       </AnimatePresence>
     </>
   );

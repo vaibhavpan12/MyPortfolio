@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import Navbar from "../../components/Navbar";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../assets/css/About.css";
+
+gsap.registerPlugin(ScrollTrigger);
+import CreativeNav from "../../components/Header";
 function About() {
+  const pageRef = useRef(null);
   const capabilities = [
     {
       title: "Frontend development",
@@ -102,9 +108,164 @@ function About() {
     },
   ];
 
+  useLayoutEffect(() => {
+    const root = pageRef.current;
+    if (!root) return;
+
+    const ctx = gsap.context(() => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduceMotion) return;
+
+      // HERO — restrained, editorial entrance.
+      const hero = gsap.timeline({
+        defaults: { ease: "power3.out" }
+      });
+
+      hero
+        .from(".vp-about-hero-name", {
+          y: 90,
+          opacity: 0,
+          duration: 1.15,
+          delay: 0.12
+        })
+        .from(".vp-about-hero-role", {
+          y: 30,
+          opacity: 0,
+          duration: 0.7
+        }, "-=0.72")
+        .from(".vp-about-hero-description", {
+          y: 25,
+          opacity: 0,
+          duration: 0.65
+        }, "-=0.42")
+        .from(".vp-about-hero-spec", {
+          y: 16,
+          opacity: 0,
+          stagger: 0.08,
+          duration: 0.5
+        }, "-=0.38");
+
+      // Subtle hero parallax — no excessive movement.
+      gsap.to(".vp-about-hero-name", {
+        yPercent: 9,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".vp-about-hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.2
+        }
+      });
+
+      // Section headings — clip reveal.
+      root.querySelectorAll(".vp-about-section-heading").forEach((heading) => {
+        const split = heading.textContent.trim().split(/(\s+)/);
+        heading.innerHTML = split
+          .map((part) =>
+            /\s+/.test(part)
+              ? part
+              : `<span class="vp-about-word"><span class="vp-about-word-inner">${part}</span></span>`
+          )
+          .join("");
+
+        gsap.from(heading.querySelectorAll(".vp-about-word-inner"), {
+          yPercent: 110,
+          opacity: 0,
+          duration: 0.85,
+          stagger: 0.055,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: heading,
+            start: "top 84%",
+            once: true
+          }
+        });
+      });
+
+      // General content reveal.
+      const revealGroups = [
+        ".vp-about-background-grid",
+        ".vp-about-approach-item",
+        ".vp-about-capability-item",
+        ".vp-about-stack-group",
+        ".vp-about-project-row",
+        ".vp-about-contact"
+      ];
+
+      revealGroups.forEach((selector) => {
+        root.querySelectorAll(selector).forEach((item) => {
+          gsap.from(item, {
+            y: 42,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 88%",
+              once: true
+            }
+          });
+        });
+      });
+
+      // Stagger capability tags when their row enters.
+      root.querySelectorAll(".vp-about-capability-item").forEach((item) => {
+        const tags = item.querySelectorAll(".vp-about-capability-tags span");
+        if (!tags.length) return;
+
+        gsap.from(tags, {
+          y: 12,
+          opacity: 0,
+          scale: 0.96,
+          stagger: 0.045,
+          duration: 0.45,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: item,
+            start: "top 80%",
+            once: true
+          }
+        });
+      });
+
+      // Project rows: professional hover motion.
+      root.querySelectorAll(".vp-about-project-row").forEach((row) => {
+        const title = row.querySelector("h3");
+        if (!title) return;
+
+        const enter = () => gsap.to(title, {
+          x: 12,
+          color: "var(--about-orange-bright)",
+          duration: 0.35,
+          ease: "power2.out"
+        });
+
+        const leave = () => gsap.to(title, {
+          x: 0,
+          color: "var(--about-text)",
+          duration: 0.35,
+          ease: "power2.out"
+        });
+
+        row.addEventListener("mouseenter", enter);
+        row.addEventListener("mouseleave", leave);
+
+        return () => {
+          row.removeEventListener("mouseenter", enter);
+          row.removeEventListener("mouseleave", leave);
+        };
+      });
+
+      ScrollTrigger.refresh();
+    }, root);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="vp-about">
-      <Navbar />
+    <div ref={pageRef} className="vp-about">
+      {/* <Navbar /> */}
+      <CreativeNav/>
 
       {/* ================= HERO ================= */}
       <section className="vp-about-hero">
@@ -145,10 +306,10 @@ function About() {
       </section>
 
       {/* ================= BACKGROUND ================= */}
-      <section className="vp-vp-about-section">
-        <div className="vp-vp-about-section-head">
-          <span className="vp-vp-about-section-index">01</span>
-          <h2 className="vp-vp-about-section-heading">Background</h2>
+      <section className="vp-about-section">
+        <div className="vp-about-section-head">
+          <span className="vp-about-section-index">01</span>
+          <h2 className="vp-about-section-heading">Background</h2>
         </div>
 
         <div className="vp-about-background-grid">
@@ -176,9 +337,9 @@ function About() {
 
       {/* ================= APPROACH ================= */}
       <section className="vp-about-section vp-about-approach-section">
-        <div className="vp-vp-about-section-head">
-          <span className="vp-vp-about-section-index">02</span>
-          <h2 className="vp-vp-about-section-heading">Approach</h2>
+        <div className="vp-about-section-head">
+          <span className="vp-about-section-index">02</span>
+          <h2 className="vp-about-section-heading">Approach</h2>
         </div>
 
         <div className="vp-about-approach-grid">
@@ -192,10 +353,10 @@ function About() {
       </section>
 
       {/* ================= CAPABILITIES ================= */}
-      <section className="vp-vp-about-section">
-        <div className="vp-vp-about-section-head">
-          <span className="vp-vp-about-section-index">03</span>
-          <h2 className="vp-vp-about-section-heading">Capabilities</h2>
+      <section className="vp-about-section">
+        <div className="vp-about-section-head">
+          <span className="vp-about-section-index">03</span>
+          <h2 className="vp-about-section-heading">Capabilities</h2>
         </div>
 
         <div className="vp-about-capabilities-list">
@@ -217,9 +378,9 @@ function About() {
 
       {/* ================= STACK ================= */}
       <section className="vp-about-section vp-about-stack-section">
-        <div className="vp-vp-about-section-head">
-          <span className="vp-vp-about-section-index">04</span>
-          <h2 className="vp-vp-about-section-heading">Stack</h2>
+        <div className="vp-about-section-head">
+          <span className="vp-about-section-index">04</span>
+          <h2 className="vp-about-section-heading">Stack</h2>
         </div>
 
         <p className="vp-about-stack-intro">
@@ -243,9 +404,9 @@ function About() {
 
       {/* ================= SELECTED WORK ================= */}
       <section className="vp-about-section vp-about-projects-section">
-        <div className="vp-vp-about-section-head">
-          <span className="vp-vp-about-section-index">05</span>
-          <h2 className="vp-vp-about-section-heading">Selected work</h2>
+        <div className="vp-about-section-head">
+          <span className="vp-about-section-index">05</span>
+          <h2 className="vp-about-section-heading">Selected work</h2>
         </div>
 
         <div className="vp-about-projects-list">

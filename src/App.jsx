@@ -7,10 +7,12 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import CreativeNav from "../components/Header";
 // import Orders from "./pages/Orders";
 function App() {
   return (
     <BrowserRouter>
+    <CreativeNav/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

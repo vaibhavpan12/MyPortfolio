@@ -8,17 +8,12 @@ import images from "../images";
 import Navbar from "../../components/Navbar";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowUpRightFromSquare,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  faGithub,
-  faGooglePlay,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faGooglePlay } from "@fortawesome/free-brands-svg-icons";
+import CreativeNav from "../../components/Header";
 
 gsap.registerPlugin(ScrollTrigger);
-
 
 /* =====================================================
    PROJECT DATA
@@ -45,8 +40,7 @@ const projects = [
       "Google Maps",
       "Cloudinary",
     ],
-    link:
-      "https://play.google.com/store/apps/details?id=com.pineverseapp&pcampaignid=web_share",
+    link: "https://play.google.com/store/apps/details?id=com.pineverseapp&pcampaignid=web_share",
     linkText: "Google Play",
     icon: faGooglePlay,
     featured: true,
@@ -70,8 +64,7 @@ const projects = [
       "Google Maps",
       "Cloudinary",
     ],
-    link:
-      "https://play.google.com/store/apps/details?id=com.premove",
+    link: "https://play.google.com/store/apps/details?id=com.premove",
     linkText: "Google Play",
     icon: faGooglePlay,
     featured: true,
@@ -93,8 +86,7 @@ const projects = [
       "JWT",
       "Tailwind CSS",
     ],
-    link:
-      "https://doctrot-appoiment-web-du5j.vercel.app/",
+    link: "https://doctrot-appoiment-web-du5j.vercel.app/",
     linkText: "Live Project",
     icon: faArrowUpRightFromSquare,
   },
@@ -107,13 +99,8 @@ const projects = [
     description:
       "A responsive internet service provider website featuring modern layouts, service plans, interactive sections and responsive user experiences.",
     image: images.flaashnet,
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-    ],
-    link:
-      "https://flaashnetwfi.netlify.app/",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    link: "https://flaashnetwfi.netlify.app/",
     linkText: "Live Project",
     icon: faArrowUpRightFromSquare,
   },
@@ -134,8 +121,7 @@ const projects = [
       "MongoDB",
       "Stripe",
     ],
-    link:
-      "https://github.com/vaibhavpan12/SHOPPER.git",
+    link: "https://github.com/vaibhavpan12/SHOPPER.git",
     linkText: "GitHub",
     icon: faGithub,
   },
@@ -148,13 +134,8 @@ const projects = [
     description:
       "An AI chatbot integration and testing platform designed around chatbot interactions, authentication, website scraping and integration workflows.",
     image: images.beyoundchat,
-    technologies: [
-      "React.js",
-      "Tailwind CSS",
-      "Firebase",
-    ],
-    link:
-      "https://chatbeyound.vercel.app/",
+    technologies: ["React.js", "Tailwind CSS", "Firebase"],
+    link: "https://chatbeyound.vercel.app/",
     linkText: "Live Project",
     icon: faArrowUpRightFromSquare,
   },
@@ -175,8 +156,7 @@ const projects = [
       "Chess.js",
       "Tailwind CSS",
     ],
-    link:
-      "https://github.com/vaibhavpan12/Chess-Game-.git",
+    link: "https://github.com/vaibhavpan12/Chess-Game-.git",
     linkText: "GitHub",
     icon: faGithub,
   },
@@ -189,16 +169,8 @@ const projects = [
     description:
       "An e-commerce platform developed with PHP and MySQL featuring authentication, product management, shopping cart, order processing and responsive UI.",
     image: images.swt,
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "PHP",
-      "MySQL",
-      "Bootstrap",
-    ],
-    link:
-      "https://github.com/vaibhavpan12/SWT-ShopWithTrust-.git",
+    technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Bootstrap"],
+    link: "https://github.com/vaibhavpan12/SWT-ShopWithTrust-.git",
     linkText: "GitHub",
     icon: faGithub,
   },
@@ -211,18 +183,12 @@ const projects = [
     description:
       "An AI-powered conversational interface inspired by modern AI assistants with API integration, responsive UI, dark mode and interactive chat experiences.",
     image: images.gemini,
-    technologies: [
-      "React.js",
-      "Tailwind CSS",
-      "AI API",
-    ],
-    link:
-      "https://gemini-clone-lj1j.vercel.app/",
+    technologies: ["React.js", "Tailwind CSS", "AI API"],
+    link: "https://gemini-clone-lj1j.vercel.app/",
     linkText: "Live Project",
     icon: faArrowUpRightFromSquare,
   },
 ];
-
 
 /* =====================================================
    PROJECT CARD
@@ -232,97 +198,56 @@ function ProjectCard({ project, index }) {
   return (
     <article
       className={`project-page-card ${
-        project.featured
-          ? "project-page-featured"
-          : ""
+        project.featured ? "project-page-featured" : ""
       }`}
     >
       {/* IMAGE */}
 
       <div className="project-page-image-wrap">
-
         <div className="project-page-image">
-
-          <img
-            src={project.image}
-            alt={project.title}
-          />
+          <img src={project.image} alt={project.title} />
 
           <div className="project-page-image-overlay" />
-
         </div>
 
         {/* NUMBER */}
 
-        <div className="project-page-number">
-          {project.id}
-        </div>
+        <div className="project-page-number">{project.id}</div>
 
         {/* CATEGORY */}
 
-        <div className="project-page-category">
-          {project.category}
-        </div>
-
+        <div className="project-page-category">{project.category}</div>
       </div>
-
 
       {/* CONTENT */}
 
       <div className="project-page-content">
-
         <div className="project-page-heading">
-
           <div>
+            <span className="project-page-type">{project.type}</span>
 
-            <span className="project-page-type">
-              {project.type}
-            </span>
-
-            <h2>
-              {project.title}
-            </h2>
-
+            <h2>{project.title}</h2>
           </div>
 
-
-          <span className="project-page-arrow">
-            ↗
-          </span>
-
+          <span className="project-page-arrow">↗</span>
         </div>
 
-
-        <p className="project-page-description">
-          {project.description}
-        </p>
-
+        <p className="project-page-description">{project.description}</p>
 
         {/* TECH */}
 
         <div className="project-page-tech">
-
           {project.technologies.map((tech) => (
-            <span key={tech}>
-              {tech}
-            </span>
+            <span key={tech}>{tech}</span>
           ))}
-
         </div>
-
 
         {/* FOOTER */}
 
         <div className="project-page-footer">
-
           <span className="project-page-tech-count">
-            {String(project.technologies.length).padStart(
-              2,
-              "0"
-            )}{" "}
-            technologies
+            {String(project.technologies.length).padStart(2, "0")} technologies
           </span>
-
 
           <a
             href={project.link}
@@ -330,42 +255,27 @@ function ProjectCard({ project, index }) {
             rel="noopener noreferrer"
             className="project-page-link"
           >
+            <FontAwesomeIcon icon={project.icon} />
 
-            <FontAwesomeIcon
-              icon={project.icon}
-            />
+            <span>{project.linkText}</span>
 
-            <span>
-              {project.linkText}
-            </span>
-
-            <span className="link-arrow">
-              ↗
-            </span>
-
+            <span className="link-arrow">↗</span>
           </a>
-
         </div>
-
       </div>
-
     </article>
   );
 }
-
 
 /* =====================================================
    PROJECT PAGE
 ===================================================== */
 
 export default function Projects() {
-
   const pageRef = useRef(null);
 
   useEffect(() => {
-
     const ctx = gsap.context(() => {
-
       /* HEADER */
 
       gsap.from(
@@ -376,247 +286,149 @@ export default function Projects() {
           duration: 1,
           stagger: 0.12,
           ease: "power4.out",
-        }
+        },
       );
-
 
       /* PROJECT CARDS */
 
-      gsap.utils
-        .toArray(".project-page-card")
-        .forEach((card, index) => {
+      gsap.utils.toArray(".project-page-card").forEach((card, index) => {
+        gsap.from(card, {
+          y: 100,
 
-          gsap.from(card, {
+          opacity: 0,
 
-            y: 100,
+          duration: 1,
 
-            opacity: 0,
+          ease: "power4.out",
 
-            duration: 1,
+          scrollTrigger: {
+            trigger: card,
 
-            ease: "power4.out",
+            start: "top 88%",
 
-            scrollTrigger: {
-              trigger: card,
-
-              start: "top 88%",
-
-              toggleActions:
-                "play none none reverse",
-            },
-
-          });
-
+            toggleActions: "play none none reverse",
+          },
         });
-
+      });
 
       /* IMAGE PARALLAX */
 
-      gsap.utils
-        .toArray(".project-page-image img")
-        .forEach((image) => {
+      gsap.utils.toArray(".project-page-image img").forEach((image) => {
+        gsap.to(image, {
+          yPercent: -8,
 
-          gsap.to(image, {
+          ease: "none",
 
-            yPercent: -8,
+          scrollTrigger: {
+            trigger: image.closest(".project-page-card"),
 
-            ease: "none",
+            start: "top bottom",
 
-            scrollTrigger: {
+            end: "bottom top",
 
-              trigger:
-                image.closest(
-                  ".project-page-card"
-                ),
-
-              start: "top bottom",
-
-              end: "bottom top",
-
-              scrub: 0.6,
-
-            },
-
-          });
-
+            scrub: 0.6,
+          },
         });
-
+      });
 
       ScrollTrigger.refresh();
-
     }, pageRef);
-
 
     return () => {
       ctx.revert();
     };
-
   }, []);
 
-
   return (
-
-    <main
-      ref={pageRef}
-      className="projects-page"
-    >
-
-      {/* =================================================
+    <>   <CreativeNav/>
+      {" "}
+      <main ref={pageRef} className="projects-page">
+        {/* =================================================
           BACKGROUND
       ================================================= */}
 
-      <div className="projects-page-glow glow-one" />
-      <div className="projects-page-glow glow-two" />
+        <div className="projects-page-glow glow-one" />
+        <div className="projects-page-glow glow-two" />
 
-      <div className="projects-page-noise" />
+        <div className="projects-page-noise" />
 
-
-      {/* =================================================
+        {/* =================================================
           NAVBAR
       ================================================= */}
 
-      <Navbar />
+        {/* <Navbar /> */}
 
-
-      {/* =================================================
+        {/* =================================================
           HEADER
       ================================================= */}
 
-      <section className="projects-page-header">
+        <section className="projects-page-header">
+          <div className="projects-page-label">
+            <span className="label-line" />
 
-        <div className="projects-page-label">
+            <span>SELECTED WORK</span>
 
-          <span className="label-line" />
-
-          <span>
-            SELECTED WORK
-          </span>
-
-          <span>
-            (09)
-          </span>
-
-        </div>
-
-
-        <div className="projects-page-title-wrap">
-
-          <h1 className="projects-page-title">
-
-            <span>
-              Selected
-            </span>
-
-            <span className="projects-page-title-outline">
-              Projects
-            </span>
-
-          </h1>
-
-
-          <div className="projects-page-meta">
-
-            <span>
-              09 PROJECTS
-            </span>
-
-            <span>
-              2023 — 2026
-            </span>
-
+            <span>(09)</span>
           </div>
 
-        </div>
+          <div className="projects-page-title-wrap">
+            <h1 className="projects-page-title">
+              <span>Selected</span>
 
+              <span className="projects-page-title-outline">Projects</span>
+            </h1>
 
-        <p className="projects-page-description">
+            <div className="projects-page-meta">
+              <span>09 PROJECTS</span>
 
-          A collection of digital products,
-          web applications, mobile experiences
-          and AI-driven systems I've designed
-          and built.
+              <span>2023 — 2026</span>
+            </div>
+          </div>
 
-        </p>
+          <p className="projects-page-description">
+            A collection of digital products, web applications, mobile
+            experiences and AI-driven systems I've designed and built.
+          </p>
+        </section>
 
-      </section>
-
-
-      {/* =================================================
+        {/* =================================================
           PROJECTS
       ================================================= */}
 
-      <section className="projects-list">
+        <section className="projects-list">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </section>
 
-        {projects.map((project, index) => (
-
-          <ProjectCard
-            key={project.id}
-            project={project}
-            index={index}
-          />
-
-        ))}
-
-      </section>
-
-
-      {/* =================================================
+        {/* =================================================
           END CTA
       ================================================= */}
 
-      <section className="projects-page-end">
+        <section className="projects-page-end">
+          <div className="end-label">HAVE A PROJECT?</div>
 
-        <div className="end-label">
-          HAVE A PROJECT?
-        </div>
+          <h2>
+            Let's build
+            <br />
+            <em>something great.</em>
+          </h2>
 
+          <Link to="/contact" className="projects-contact-button">
+            <span>Start a conversation</span>
 
-        <h2>
+            <span>↗</span>
+          </Link>
 
-          Let's build
-          <br />
+          <div className="projects-page-footer">
+            <span>VAIBHAV PANCHAL</span>
 
-          <em>
-            something great.
-          </em>
+            <span>FULL-STACK DEVELOPER</span>
 
-        </h2>
-
-
-        <Link
-          to="/contact"
-          className="projects-contact-button"
-        >
-
-          <span>
-            Start a conversation
-          </span>
-
-          <span>
-            ↗
-          </span>
-
-        </Link>
-
-
-        <div className="projects-page-footer">
-
-          <span>
-            VAIBHAV PANCHAL
-          </span>
-
-          <span>
-            FULL-STACK DEVELOPER
-          </span>
-
-          <span>
-            INDIA
-          </span>
-
-        </div>
-
-      </section>
-
-    </main>
+            <span>INDIA</span>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }

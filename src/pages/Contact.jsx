@@ -1,144 +1,335 @@
-import { useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import Navbar from "../../components/Navbar";
+import gsap from "gsap";
+
 import {
   faFacebook,
   faGithub,
   faLinkedinIn,
   faSquareInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "motion/react";
+
+import "../assets/css/Contact.css";
 
 const Contact = () => {
-  const form = useRef();
-  const [status, setStatus] = useState("");
+  const pageRef = useRef(null);
+  const formRef = useRef(null);
 
-  const sendEmail = (e) => {
+  const [status, setStatus] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  useLayoutEffect(() => {
+    const root = pageRef.current;
+
+    if (!root) return;
+
+    const ctx = gsap.context(() => {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (reduceMotion) return;
+
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "power3.out",
+        },
+      });
+
+      tl.from(".vp-contact-eyebrow", {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+      })
+        .from(
+          ".vp-contact-title-line",
+          {
+            yPercent: 110,
+            opacity: 0,
+            duration: 0.9,
+            stagger: 0.12,
+          },
+          "-=0.3",
+        )
+        .from(
+          ".vp-contact-intro",
+          {
+            y: 25,
+            opacity: 0,
+            duration: 0.7,
+          },
+          "-=0.45",
+        )
+        .from(
+          ".vp-contact-form-card",
+          {
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+          },
+          "-=0.35",
+        )
+        .from(
+          ".vp-contact-side-item",
+          {
+            x: 25,
+            opacity: 0,
+            duration: 0.55,
+            stagger: 0.1,
+          },
+          "-=0.5",
+        )
+        .from(
+          ".vp-contact-social",
+          {
+            y: 15,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.08,
+          },
+          "-=0.3",
+        );
+
+      gsap.to(".vp-contact-orb", {
+        y: -25,
+        x: 15,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    }, root);
+
+    return () => ctx.revert();
+  }, []);
+
+  const sendEmail = async (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm(
-        "service_4g3lrxu", // Replace with your Service ID
-        "template_52ec1bb", // Replace with your Template ID
-        form.current,
-        "xejoGEA8JAYxcSpJO" // Replace with your Public Key
-      )
-      .then(
-        (result) => {
-          console.log("Email sent:", result.text);
-          setStatus("Message sent successfully!");
-          form.current.reset();
-        },
-        (error) => {
-          console.log("Email error:", error.text);
-          setStatus("Failed to send message.");
-        }
+    if (isSending) return;
+
+    setIsSending(true);
+    setStatus("");
+
+    try {
+      const result = await emailjs.sendForm(
+        "service_9tgeql6",
+        "template_rr5ed5j",
+        formRef.current,
+        "xyF3LHBwCIS8u00GL",
       );
+
+      console.log("Email sent:", result.text);
+
+      setStatus("success");
+      formRef.current.reset();
+    } catch (error) {
+      console.error("Email error:", error);
+
+      setStatus("error");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
-    <div className=" w-screen h-screen flex text-white fontUse flex-col items-center min-h-screen p-4">
-      <div className="w-[100%] h-[10%]">
-        <Navbar />
+    <main ref={pageRef} className="vp-contact-page">
+      {/* Background */}
+      <div className="vp-contact-background">
+        <div className="vp-contact-grid" />
+        <div className="vp-contact-orb" />
       </div>
-      <div className="w-[100%] h-[90%] flex-col text-black flex justify-center items-center">
-        <h2 className="text-2xl font-bold mb-4 text-white fontUse">
-          Contact Me
-        </h2>
-        <form
-          ref={form}
-          onSubmit={sendEmail}
-          className="bg-white py-6 px-5  rounded-lg shadow-lg max-w-md w-full"
-        >
-          <label className="block mb-2">Name</label>
-          <input
-            type="text"
-            name="from_name"
-            className="w-full p-2 border rounded-md mb-4"
-            required
-          />
 
-          <label className="block mb-2">Email</label>
-          <input
-            type="email"
-            name="user_email"
-            className="w-full p-2 border rounded-md mb-4"
-            required
-          />
+      <section className="vp-contact-hero">
+        <div className="vp-contact-header">
+          <div className="vp-contact-eyebrow">
+            <span className="vp-contact-dot" />
+            AVAILABLE FOR WORK
+          </div>
 
-          <label className="block mb-2">Message</label>
-          <textarea
-            name="message"
-            className="w-full p-2 border rounded-md mb-4"
-            required
-          ></textarea>
+          <h1 className="vp-contact-title">
+            <span className="vp-contact-title-line">Let's build</span>
+            <span className="vp-contact-title-line">
+              something <em>great.</em>
+            </span>
+          </h1>
 
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-          >
-            Send
-          </button>
-        </form>
-        {status && (
-          <p className="mt-4 text-green-600 font-bold fontUse text-2xl">
-            {status}
+          <p className="vp-contact-intro">
+            Have an idea, project, or opportunity in mind?
+            <br />
+            Drop me a message and let's talk.
           </p>
-        )}
-        <div className="w-[25%] flex justify-center items-center rounded-lg  mt-10 py-5 bg-white">
-          <motion.div className="lg:w-[90%] text-[22px] flex xl:text-[20px] lg:text-2xl justify-evenly items-center">
-            <motion.a
-              initial={{ x: -10, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.5 }}
-              href="https://www.linkedin.com/in/vaibhav-panchal12"
-              target="_blank"
-            >
-              <FontAwesomeIcon
-                icon={faLinkedinIn}
-                className="cursor-pointer hover:bg-[#0062ffab] p-2 rounded-lg duration-300 ease-in"
-              />
-            </motion.a>
-            <motion.a
-              initial={{ x: -10, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.6 }}
-              href="https://github.com/vaibhavdkjbdjchv?tab=repositories"
-              target="_blank"
-            >
-              <FontAwesomeIcon
-                icon={faGithub}
-                className="cursor-pointer  hover:bg-gray-700 hover:text-white p-2 rounded-lg duration-300 ease-in"
-              />
-            </motion.a>
-            <motion.a
-              initial={{ x: -10, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.7 }}
-              href="https://www.instagram.com/vitt_hal_12?utm_source=qr&igsh=ZTR1N3h3NDBuMGdh"
-            >
-              <FontAwesomeIcon
-                icon={faSquareInstagram}
-                className="cursor-pointer duration-500 ease-in hover:bg-gradient-to-r hover:from-yellow-400 hover:via-pink-500 hover:to-purple-600 p-2 rounded-lg "
-              />
-            </motion.a>
-            <motion.a
-              initial={{ x: -10, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.8 }}
-              href=""
-            >
-              <FontAwesomeIcon
-                icon={faFacebook}
-                className="cursor-pointer hover:bg-[#0015ffab] p-2 rounded-lg duration-300 ease-in"
-              />
-            </motion.a>
-          </motion.div>
         </div>
-      </div>
-    </div>
+
+        <div className="vp-contact-layout">
+          {/* FORM */}
+          <div className="vp-contact-form-card">
+            <div className="vp-contact-form-top">
+              <span>01 / SEND A MESSAGE</span>
+              <span>DIRECT</span>
+            </div>
+
+            <form
+              ref={formRef}
+              onSubmit={sendEmail}
+              className="vp-contact-form"
+            >
+              <div className="vp-contact-field">
+                <label htmlFor="contact-name">Your name</label>
+
+                <input
+                  id="contact-name"
+                  type="text"
+                  name="from_name"
+                  placeholder="John Doe"
+                  required
+                />
+              </div>
+
+              <div className="vp-contact-field">
+                <label htmlFor="contact-email">Email address</label>
+
+                <input
+                  id="contact-email"
+                  type="email"
+                  name="user_email"
+                  placeholder="john@example.com"
+                  required
+                />
+              </div>
+
+              <div className="vp-contact-field">
+                <label htmlFor="contact-message">Tell me about it</label>
+
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  placeholder="I have an interesting project..."
+                  rows="5"
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="vp-contact-submit"
+                disabled={isSending}
+              >
+                <span>{isSending ? "Sending..." : "Send message"}</span>
+
+                <span className="vp-contact-submit-icon">
+                  {isSending ? "..." : "↗"}
+                </span>
+              </button>
+
+              {status === "success" && (
+                <div className="vp-contact-status success">
+                  <span>✓</span>
+                  Message sent successfully. I'll get back to you soon.
+                </div>
+              )}
+
+              {status === "error" && (
+                <div className="vp-contact-status error">
+                  <span>!</span>
+                  Something went wrong. Please try again.
+                </div>
+              )}
+            </form>
+          </div>
+
+          {/* SIDE INFO */}
+          <aside className="vp-contact-side">
+            <div className="vp-contact-side-item">
+              <span className="vp-contact-side-number">02</span>
+
+              <div>
+                <span className="vp-contact-side-label">EMAIL</span>
+
+                <a
+                  href="mailto:your-email@example.com"
+                  className="vp-contact-email"
+                >
+                  Let's talk
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="vp-contact-side-item">
+              <span className="vp-contact-side-number">03</span>
+
+              <div>
+                <span className="vp-contact-side-label">LOCATION</span>
+
+                <p>
+                  India
+                  <br />
+                  Available Worldwide
+                </p>
+              </div>
+            </div>
+
+            <div className="vp-contact-side-item">
+              <span className="vp-contact-side-number">04</span>
+
+              <div>
+                <span className="vp-contact-side-label">SOCIALS</span>
+
+                <div className="vp-contact-socials">
+                  <a
+                    className="vp-contact-social"
+                    href="https://www.linkedin.com/in/vaibhav-panchal12"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                  >
+                    <FontAwesomeIcon icon={faLinkedinIn} />
+                  </a>
+
+                  <a
+                    className="vp-contact-social"
+                    href="https://github.com/vaibhavdkjbdjchv?tab=repositories"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                  >
+                    <FontAwesomeIcon icon={faGithub} />
+                  </a>
+
+                  <a
+                    className="vp-contact-social"
+                    href="https://www.instagram.com/vitt_hal_12/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                  >
+                    <FontAwesomeIcon icon={faSquareInstagram} />
+                  </a>
+
+                  <a
+                    className="vp-contact-social"
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                  >
+                    <FontAwesomeIcon icon={faFacebook} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div className="vp-contact-footer">
+          <span>© {new Date().getFullYear()} VAIBHAV PANCHAL</span>
+          <span>DESIGNED & DEVELOPED WITH INTENT</span>
+        </div>
+      </section>
+    </main>
   );
 };
 
