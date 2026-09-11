@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "../App.css";
+
 import images from "../images";
 import Navbar from "../../components/Navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
-import { faGithub, faGooglePlay } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
+
+import {
+  faGithub,
+  faGooglePlay,
+} from "@fortawesome/free-brands-svg-icons";
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+/* =====================================================
+   PROJECT DATA
+===================================================== */
 
 const projects = [
   {
     id: "01",
     title: "Pineverse",
-    category: "Relocation & Logistics Platform",
-    type: "Featured Project",
+    category: "Relocation & Logistics",
+    type: "Full-Stack Platform",
     description:
-      "A full-stack relocation marketplace connecting customers with moving and logistics service providers. Built customer and vendor workflows for requests, quotations, bidding, communication, notifications and payments.",
+      "A full-stack relocation marketplace connecting customers with moving and logistics service providers through requests, quotations, bidding, communication, notifications and payments.",
     image: images.pineverse,
     technologies: [
       "React.js",
@@ -27,8 +45,9 @@ const projects = [
       "Google Maps",
       "Cloudinary",
     ],
-    link: "https://play.google.com/store/apps/details?id=com.pineverseapp&pcampaignid=web_share",
-    linkText: "View Project",
+    link:
+      "https://play.google.com/store/apps/details?id=com.pineverseapp&pcampaignid=web_share",
+    linkText: "Google Play",
     icon: faGooglePlay,
     featured: true,
   },
@@ -36,10 +55,10 @@ const projects = [
   {
     id: "02",
     title: "PreMove",
-    category: "Relocation Management App",
+    category: "Relocation Management",
     type: "Mobile Application",
     description:
-      "A relocation operations platform built to manage leads, customers, inventory, inspections and item tracking. Includes barcode workflows, role-based dashboards, documents and real-time operational updates.",
+      "A relocation operations platform for managing leads, customers, inventory, inspections and item tracking with barcode workflows, role-based dashboards and real-time updates.",
     image: images.premove,
     technologies: [
       "React Native",
@@ -51,7 +70,8 @@ const projects = [
       "Google Maps",
       "Cloudinary",
     ],
-    link: "https://play.google.com/store/apps/details?id=com.premove",
+    link:
+      "https://play.google.com/store/apps/details?id=com.premove",
     linkText: "Google Play",
     icon: faGooglePlay,
     featured: true,
@@ -60,7 +80,7 @@ const projects = [
   {
     id: "03",
     title: "EstroVerse",
-    category: "Healthcare Platform",
+    category: "Healthcare",
     type: "Full-Stack Web App",
     description:
       "A doctor appointment platform connecting patients and doctors through online booking, authentication, doctor profiles and administrative management.",
@@ -73,7 +93,8 @@ const projects = [
       "JWT",
       "Tailwind CSS",
     ],
-    link: "https://doctrot-appoiment-web-du5j.vercel.app/",
+    link:
+      "https://doctrot-appoiment-web-du5j.vercel.app/",
     linkText: "Live Project",
     icon: faArrowUpRightFromSquare,
   },
@@ -84,10 +105,15 @@ const projects = [
     category: "Business Website",
     type: "Frontend Development",
     description:
-      "A responsive business website developed for an internet service provider, featuring modern layouts, service plans, interactive sections and responsive experiences.",
+      "A responsive internet service provider website featuring modern layouts, service plans, interactive sections and responsive user experiences.",
     image: images.flaashnet,
-    technologies: ["HTML", "CSS", "JavaScript"],
-    link: "https://flaashnetwfi.netlify.app/",
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+    ],
+    link:
+      "https://flaashnetwfi.netlify.app/",
     linkText: "Live Project",
     icon: faArrowUpRightFromSquare,
   },
@@ -98,7 +124,7 @@ const projects = [
     category: "E-Commerce",
     type: "Full-Stack Web App",
     description:
-      "A full-stack e-commerce platform with product management, authentication, shopping cart, orders and secure payment integration.",
+      "A full-stack e-commerce platform featuring product management, authentication, shopping cart, orders and secure payment integration.",
     image: images.shopper,
     technologies: [
       "React.js",
@@ -108,8 +134,9 @@ const projects = [
       "MongoDB",
       "Stripe",
     ],
-    link: "https://github.com/vaibhavpan12/SHOPPER.git",
-    linkText: "View on GitHub",
+    link:
+      "https://github.com/vaibhavpan12/SHOPPER.git",
+    linkText: "GitHub",
     icon: faGithub,
   },
 
@@ -121,8 +148,13 @@ const projects = [
     description:
       "An AI chatbot integration and testing platform designed around chatbot interactions, authentication, website scraping and integration workflows.",
     image: images.beyoundchat,
-    technologies: ["React.js", "Tailwind CSS", "Firebase"],
-    link: "https://chatbeyound.vercel.app/",
+    technologies: [
+      "React.js",
+      "Tailwind CSS",
+      "Firebase",
+    ],
+    link:
+      "https://chatbeyound.vercel.app/",
     linkText: "Live Project",
     icon: faArrowUpRightFromSquare,
   },
@@ -143,8 +175,9 @@ const projects = [
       "Chess.js",
       "Tailwind CSS",
     ],
-    link: "https://github.com/vaibhavpan12/Chess-Game-.git",
-    linkText: "View on GitHub",
+    link:
+      "https://github.com/vaibhavpan12/Chess-Game-.git",
+    linkText: "GitHub",
     icon: faGithub,
   },
 
@@ -156,9 +189,17 @@ const projects = [
     description:
       "An e-commerce platform developed with PHP and MySQL featuring authentication, product management, shopping cart, order processing and responsive UI.",
     image: images.swt,
-    technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Bootstrap"],
-    link: "https://github.com/vaibhavpan12/SWT-ShopWithTrust-.git",
-    linkText: "View on GitHub",
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "PHP",
+      "MySQL",
+      "Bootstrap",
+    ],
+    link:
+      "https://github.com/vaibhavpan12/SWT-ShopWithTrust-.git",
+    linkText: "GitHub",
     icon: faGithub,
   },
 
@@ -168,316 +209,414 @@ const projects = [
     category: "Artificial Intelligence",
     type: "AI Chat Interface",
     description:
-      "An AI-powered conversational interface inspired by modern AI assistants, featuring API integration, responsive UI, dark mode and interactive chat experiences.",
+      "An AI-powered conversational interface inspired by modern AI assistants with API integration, responsive UI, dark mode and interactive chat experiences.",
     image: images.gemini,
-    technologies: ["React.js", "Tailwind CSS", "AI API"],
-    link: "https://gemini-clone-lj1j.vercel.app/",
+    technologies: [
+      "React.js",
+      "Tailwind CSS",
+      "AI API",
+    ],
+    link:
+      "https://gemini-clone-lj1j.vercel.app/",
     linkText: "Live Project",
     icon: faArrowUpRightFromSquare,
   },
 ];
 
-function ProjectCard({ project }) {
+
+/* =====================================================
+   PROJECT CARD
+===================================================== */
+
+function ProjectCard({ project, index }) {
   return (
     <article
-      className={`
-        group relative overflow-hidden rounded-[28px]
-        border border-black/10 dark:border-white/10
-        bg-white/70 dark:bg-white/[0.04]
-        backdrop-blur-xl
-        transition-all duration-500
-        hover:-translate-y-2
-        hover:border-black/20 dark:hover:border-white/20
-        hover:shadow-2xl
-        ${project.featured ? "lg:col-span-2" : ""}
-      `}
+      className={`project-page-card ${
+        project.featured
+          ? "project-page-featured"
+          : ""
+      }`}
     >
-      {/* Image */}
-      <div
-        className={`
-          relative overflow-hidden
-          ${project.featured ? "h-[280px] sm:h-[380px]" : "h-[240px] sm:h-[280px]"}
-        `}
-      >
-        <img
-          src={project.image}
-          alt={project.title}
-          className="
-            h-full w-full object-cover
-            transition-transform duration-700
-            group-hover:scale-105
-          "
-        />
+      {/* IMAGE */}
 
-        {/* Image overlay */}
-        <div
-          className="
-            absolute inset-0
-            bg-gradient-to-t
-            from-black/70 via-black/10 to-transparent
-          "
-        />
+      <div className="project-page-image-wrap">
 
-        {/* Project number */}
-        <div
-          className="
-            absolute left-5 top-5
-            flex h-10 w-10 items-center justify-center
-            rounded-full
-            border border-white/20
-            bg-black/30
-            backdrop-blur-md
-            text-sm font-semibold text-white
-          "
-        >
+        <div className="project-page-image">
+
+          <img
+            src={project.image}
+            alt={project.title}
+          />
+
+          <div className="project-page-image-overlay" />
+
+        </div>
+
+        {/* NUMBER */}
+
+        <div className="project-page-number">
           {project.id}
         </div>
 
-        {/* Featured badge */}
-        {project.featured && (
-          <div
-            className="
-              absolute right-5 top-5
-              rounded-full
-              border border-white/20
-              bg-white/15
-              px-4 py-2
-              text-xs font-medium
-              text-white
-              backdrop-blur-md
-            "
-          >
-            Featured
-          </div>
-        )}
+        {/* CATEGORY */}
 
-        {/* Category on image */}
-        <div className="absolute bottom-5 left-5">
-          <span
-            className="
-              rounded-full
-              border border-white/20
-              bg-black/30
-              px-3 py-1.5
-              text-xs font-medium
-              text-white
-              backdrop-blur-md
-            "
-          >
-            {project.category}
-          </span>
+        <div className="project-page-category">
+          {project.category}
         </div>
+
       </div>
 
-      {/* Content */}
-      <div className="p-6 sm:p-7">
-        <div className="flex items-start justify-between gap-5">
-          <div>
-            <p className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
-              {project.type}
-            </p>
 
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+      {/* CONTENT */}
+
+      <div className="project-page-content">
+
+        <div className="project-page-heading">
+
+          <div>
+
+            <span className="project-page-type">
+              {project.type}
+            </span>
+
+            <h2>
               {project.title}
             </h2>
+
           </div>
 
-          {/* Arrow */}
-          <div
-            className="
-              flex h-11 w-11 shrink-0 items-center justify-center
-              rounded-full
-              border border-black/10 dark:border-white/10
-              bg-black/[0.03] dark:bg-white/[0.05]
-              transition-all duration-300
-              group-hover:-translate-y-1
-              group-hover:translate-x-1
-            "
-          >
-            <FontAwesomeIcon
-              icon={faArrowUpRightFromSquare}
-              className="text-sm"
-            />
-          </div>
+
+          <span className="project-page-arrow">
+            ↗
+          </span>
+
         </div>
 
-        {/* Description */}
-        <p className="mt-4 max-w-2xl text-sm sm:text-[15px] leading-7 text-gray-600 dark:text-gray-400">
+
+        <p className="project-page-description">
           {project.description}
         </p>
 
-        {/* Technology Stack */}
-        <div className="mt-6">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-gray-400">
-            Tech Stack
-          </p>
 
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.map((tech) => (
-              <span
-                key={tech}
-                className="
-                  rounded-full
-                  border border-black/10 dark:border-white/10
-                  bg-black/[0.03] dark:bg-white/[0.05]
-                  px-3 py-1.5
-                  text-xs sm:text-[13px]
-                  font-medium
-                  text-gray-700 dark:text-gray-300
-                  transition-colors
-                  group-hover:bg-black/[0.06]
-                  dark:group-hover:bg-white/[0.08]
-                "
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+        {/* TECH */}
+
+        <div className="project-page-tech">
+
+          {project.technologies.map((tech) => (
+            <span key={tech}>
+              {tech}
+            </span>
+          ))}
+
         </div>
 
-        {/* Bottom */}
-        <div
-          className="
-            mt-7 flex items-center justify-between
-            gap-4 border-t border-black/10
-            dark:border-white/10 pt-5
-          "
-        >
-          <span className="text-xs font-medium text-gray-400">
-            {project.technologies.length} technologies
+
+        {/* FOOTER */}
+
+        <div className="project-page-footer">
+
+          <span className="project-page-tech-count">
+            {String(project.technologies.length).padStart(
+              2,
+              "0"
+            )}{" "}
+            technologies
           </span>
+
 
           <a
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="
-              inline-flex items-center gap-2
-              rounded-full
-              bg-black px-5 py-2.5
-              text-sm font-semibold text-white
-              transition-all duration-300
-              hover:scale-[1.03]
-              hover:bg-gray-800
-              dark:bg-white
-              dark:text-black
-              dark:hover:bg-gray-200
-            "
+            className="project-page-link"
           >
-            <FontAwesomeIcon icon={project.icon} />
-            {project.linkText}
+
+            <FontAwesomeIcon
+              icon={project.icon}
+            />
+
+            <span>
+              {project.linkText}
+            </span>
+
+            <span className="link-arrow">
+              ↗
+            </span>
+
           </a>
+
         </div>
+
       </div>
+
     </article>
   );
 }
 
-function Projects() {
+
+/* =====================================================
+   PROJECT PAGE
+===================================================== */
+
+export default function Projects() {
+
+  const pageRef = useRef(null);
+
+  useEffect(() => {
+
+    const ctx = gsap.context(() => {
+
+      /* HEADER */
+
+      gsap.from(
+        ".projects-page-label, .projects-page-title, .projects-page-description",
+        {
+          y: 70,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.12,
+          ease: "power4.out",
+        }
+      );
+
+
+      /* PROJECT CARDS */
+
+      gsap.utils
+        .toArray(".project-page-card")
+        .forEach((card, index) => {
+
+          gsap.from(card, {
+
+            y: 100,
+
+            opacity: 0,
+
+            duration: 1,
+
+            ease: "power4.out",
+
+            scrollTrigger: {
+              trigger: card,
+
+              start: "top 88%",
+
+              toggleActions:
+                "play none none reverse",
+            },
+
+          });
+
+        });
+
+
+      /* IMAGE PARALLAX */
+
+      gsap.utils
+        .toArray(".project-page-image img")
+        .forEach((image) => {
+
+          gsap.to(image, {
+
+            yPercent: -8,
+
+            ease: "none",
+
+            scrollTrigger: {
+
+              trigger:
+                image.closest(
+                  ".project-page-card"
+                ),
+
+              start: "top bottom",
+
+              end: "bottom top",
+
+              scrub: 0.6,
+
+            },
+
+          });
+
+        });
+
+
+      ScrollTrigger.refresh();
+
+    }, pageRef);
+
+
+    return () => {
+      ctx.revert();
+    };
+
+  }, []);
+
+
   return (
-    <div className="min-h-screen bg-transparent">
+
+    <main
+      ref={pageRef}
+      className="projects-page"
+    >
+
+      {/* =================================================
+          BACKGROUND
+      ================================================= */}
+
+      <div className="projects-page-glow glow-one" />
+      <div className="projects-page-glow glow-two" />
+
+      <div className="projects-page-noise" />
+
+
+      {/* =================================================
+          NAVBAR
+      ================================================= */}
+
       <Navbar />
 
-      <main className="w-full">
-        <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          {/* =====================================================
-              HEADER
-          ====================================================== */}
-          <div className="mb-12 sm:mb-16">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="h-px w-8 bg-current opacity-40" />
 
-                  <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gray-500 dark:text-gray-400">
-                    Selected Work
-                  </span>
-                </div>
+      {/* =================================================
+          HEADER
+      ================================================= */}
 
-                <h1 className="text-4xl font-bold tracking-[-0.04em] text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
-                  Projects
-                  <span className="ml-2 text-gray-400">↗</span>
-                </h1>
+      <section className="projects-page-header">
 
-                <p className="mt-5 max-w-2xl text-sm leading-7 text-gray-500 dark:text-gray-400 sm:text-base">
-                  A collection of products and applications I've built across
-                  web, mobile, AI, e-commerce and real-time systems.
-                </p>
-              </div>
+        <div className="projects-page-label">
 
-              {/* Project count */}
-              <div className="flex items-center gap-3">
-                <div className="rounded-full border border-black/10 bg-black/[0.03] px-4 py-2 text-sm font-medium dark:border-white/10 dark:bg-white/[0.04]">
-                  {projects.length} Projects
-                </div>
-              </div>
-            </div>
+          <span className="label-line" />
+
+          <span>
+            SELECTED WORK
+          </span>
+
+          <span>
+            (09)
+          </span>
+
+        </div>
+
+
+        <div className="projects-page-title-wrap">
+
+          <h1 className="projects-page-title">
+
+            <span>
+              Selected
+            </span>
+
+            <span className="projects-page-title-outline">
+              Projects
+            </span>
+
+          </h1>
+
+
+          <div className="projects-page-meta">
+
+            <span>
+              09 PROJECTS
+            </span>
+
+            <span>
+              2023 — 2026
+            </span>
+
           </div>
 
-          {/* =====================================================
-              PROJECT GRID
-          ====================================================== */}
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
+        </div>
 
-          {/* =====================================================
-              FOOTER CTA
-          ====================================================== */}
-          <div
-            className="
-              mt-16 overflow-hidden rounded-[28px]
-              border border-black/10
-              bg-black/[0.03]
-              p-7 dark:border-white/10
-              dark:bg-white/[0.04]
-              sm:mt-20 sm:p-10
-            "
-          >
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
-                  More to explore
-                </p>
 
-                <h3 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Interested in what I can build?
-                </h3>
+        <p className="projects-page-description">
 
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                  Let's build something useful, scalable and impactful.
-                </p>
-              </div>
+          A collection of digital products,
+          web applications, mobile experiences
+          and AI-driven systems I've designed
+          and built.
 
-              <a
-                href="https://github.com/vaibhavpan12"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  inline-flex w-fit items-center gap-2
-                  rounded-full
-                  border border-black/10
-                  bg-white px-5 py-3
-                  text-sm font-semibold
-                  text-black
-                  transition-all
-                  hover:-translate-y-0.5
-                  hover:shadow-lg
-                  dark:border-white/10
-                  dark:bg-white
-                "
-              >
-                <FontAwesomeIcon icon={faGithub} />
-                Explore GitHub
-              </a>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
+        </p>
+
+      </section>
+
+
+      {/* =================================================
+          PROJECTS
+      ================================================= */}
+
+      <section className="projects-list">
+
+        {projects.map((project, index) => (
+
+          <ProjectCard
+            key={project.id}
+            project={project}
+            index={index}
+          />
+
+        ))}
+
+      </section>
+
+
+      {/* =================================================
+          END CTA
+      ================================================= */}
+
+      <section className="projects-page-end">
+
+        <div className="end-label">
+          HAVE A PROJECT?
+        </div>
+
+
+        <h2>
+
+          Let's build
+          <br />
+
+          <em>
+            something great.
+          </em>
+
+        </h2>
+
+
+        <Link
+          to="/contact"
+          className="projects-contact-button"
+        >
+
+          <span>
+            Start a conversation
+          </span>
+
+          <span>
+            ↗
+          </span>
+
+        </Link>
+
+
+        <div className="projects-page-footer">
+
+          <span>
+            VAIBHAV PANCHAL
+          </span>
+
+          <span>
+            FULL-STACK DEVELOPER
+          </span>
+
+          <span>
+            INDIA
+          </span>
+
+        </div>
+
+      </section>
+
+    </main>
   );
 }
-
-export default Projects;

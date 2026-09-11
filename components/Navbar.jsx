@@ -8,6 +8,8 @@ import {
   faXmark,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
+import "../src/assets/css/Home.css";
+import "../src/assets/css/Project.css";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
