@@ -1,0 +1,166 @@
+.footer-section {
+  position: relative;
+  width: 100%;
+  padding: 100px 6vw 30px;
+  overflow: hidden;
+    background: radial-gradient(
+    circle,
+    rgba(193, 66, 10, 0.1),
+    transparent 68%
+  );
+
+}
+
+.footer-main {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  gap: 60px;
+  margin-top: 80px;
+}
+
+.footer-title {
+  margin: 0;
+  font-size: clamp(60px, 8vw, 130px);
+  line-height: 0.9;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.footer-title em {
+  font-style: italic;
+}
+
+.footer-side {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.footer-side p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.65;
+}
+
+.footer-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 18px 22px;
+
+  color: white;
+  text-decoration: none;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+
+  transition: all 0.3s ease;
+}
+
+.footer-button:hover {
+  background: white;
+  color: black;
+}
+
+.footer-button span:last-child {
+  font-size: 20px;
+}
+
+/* Bottom */
+
+.footer-bottom {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 120px;
+  padding-top: 25px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-copyright {
+  font-size: 13px;
+  opacity: 0.5;
+}
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 22px;
+
+  color: #f6f2f2;
+  background: transparent;
+
+  border: 1px solid rgba(245, 245, 245, 0.482);
+  border-radius: 50px;
+
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  opacity: 1;
+
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: #faf9f9;
+  color: #050505;
+  border-color: #faf9f9;
+  transform: translateY(-2px);
+}
+/* Ghost Number */
+
+.footer-ghost {
+  position: absolute;
+  right: 5%;
+  bottom: 0;
+
+  font-size: 25vw;
+  line-height: 1;
+
+  color: rgba(255, 255, 255, 0.025);
+
+  pointer-events: none;
+}
+
+/* Glow */
+
+.footer-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+
+  right: -200px;
+  bottom: -250px;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 120, 30, 0.15),
+    transparent 70%
+  );
+
+  pointer-events: none;
+}

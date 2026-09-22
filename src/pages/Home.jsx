@@ -17,6 +17,7 @@ import { faReact, faNodeJs, faJs } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreativeNav from "../../components/Header";
 import "../assets/css/Project.css";
+import Footer from "../../components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -674,63 +675,7 @@ export default function Home() {
           CONTACT
       ========================================== */}
 
-      <section className="footer-section">
-        <div className="footer-glow"></div>
-
-        <span className="footer-ghost">05</span>
-
-        <div className="section-label">
-          <span>(05)</span>
-          <span>CONTACT</span>
-        </div>
-
-        <div className="footer-main">
-          <h2 className="footer-title">
-            Let's make
-            <br />
-            something
-            <br />
-            <em>different.</em>
-          </h2>
-
-          <div className="footer-side">
-            <p>Have an idea, project or opportunity? Let's talk.</p>
-
-            <Link to="/contact" className="footer-button">
-              Start a conversation
-              <span>↗</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <span>© 2026 Vaibhav Panchal</span>
-
-          <div className="social-links">
-            <a
-              href="https://github.com/"
-              target="_blank"
-              rel="noreferrer"
-              className="social-link"
-            >
-              GitHub
-            </a>
-
-            <a
-              href="https://linkedin.com/"
-              target="_blank"
-              rel="noreferrer"
-              className="social-link"
-            >
-              LinkedIn
-            </a>
-
-            <a href="#" className="social-link">
-              Instagram
-            </a>
-          </div>
-        </div>
-      </section>
+    <Footer/>
     </main>
   );
 }
