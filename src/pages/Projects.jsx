@@ -22,6 +22,28 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     id: "01",
+    title: "Pivora",
+    category: "AI-Powered E-Commerce",
+    type: "Full-Stack Web Application",
+    description:
+      "A modern e-commerce platform featuring product discovery, category browsing, search, shopping cart and checkout experiences. Includes an AI Shopping Assistant that helps users find products through natural-language prompts and personalized recommendations.",
+    image: images.Pivora,
+    technologies: [
+      "React.js",
+      "Python",
+      "MongoDB",
+      "Ollama",
+      "Llama 3.2 (3B)",
+    ],
+    link: "https://github.com/vaibhavpan12/Pivora.git",
+    linkText: "GitHub",
+    icon: faGithub,
+    featured: true,
+  },
+
+
+  {
+    id: "02",
     title: "Pineverse",
     category: "Relocation & Logistics",
     type: "Full-Stack Platform",
@@ -47,7 +69,7 @@ const projects = [
   },
 
   {
-    id: "02",
+    id: "03",
     title: "PreMove",
     category: "Relocation Management",
     type: "Mobile Application",
@@ -71,7 +93,7 @@ const projects = [
   },
 
   {
-    id: "03",
+    id: "04",
     title: "EstroVerse",
     category: "Healthcare",
     type: "Full-Stack Web App",
@@ -92,7 +114,7 @@ const projects = [
   },
 
   {
-    id: "04",
+    id: "05",
     title: "FlaashNet",
     category: "Business Website",
     type: "Frontend Development",
@@ -106,7 +128,7 @@ const projects = [
   },
 
   {
-    id: "05",
+    id: "06",
     title: "Shopper",
     category: "E-Commerce",
     type: "Full-Stack Web App",
@@ -127,7 +149,7 @@ const projects = [
   },
 
   {
-    id: "06",
+    id: "07",
     title: "BeyondChat",
     category: "AI / Chatbot",
     type: "Web Application",
@@ -141,7 +163,7 @@ const projects = [
   },
 
   {
-    id: "07",
+    id: "08",
     title: "Real-Time Chess",
     category: "Real-Time Application",
     type: "Multiplayer Web App",
@@ -162,7 +184,7 @@ const projects = [
   },
 
   {
-    id: "08",
+    id: "09",
     title: "SWT",
     category: "E-Commerce",
     type: "Full-Stack Web App",
@@ -176,7 +198,7 @@ const projects = [
   },
 
   {
-    id: "09",
+    id: "10",
     title: "Gemini Clone",
     category: "Artificial Intelligence",
     type: "AI Chat Interface",
@@ -368,7 +390,7 @@ export default function Projects() {
 
             <span>SELECTED WORK</span>
 
-            <span>(09)</span>
+            <span>(10)</span>
           </div>
 
           <div className="projects-page-title-wrap">
@@ -379,7 +401,7 @@ export default function Projects() {
             </h1>
 
             <div className="projects-page-meta">
-              <span>09 PROJECTS</span>
+              <span>10 PROJECTS</span>
 
               <span>2023 — 2026</span>
             </div>
