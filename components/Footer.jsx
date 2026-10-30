@@ -46,7 +46,7 @@ function Footer() {
 
           <div className="contact-footer__socials">
             <a
-              href="https://github.com/"
+              href="https://github.com/vaibhavpan12"
               target="_blank"
               rel="noopener noreferrer"
               className="contact-footer__social"
@@ -55,7 +55,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://linkedin.com/"
+              href="https://www.linkedin.com/in/vaibhav-panchal12"
               target="_blank"
               rel="noopener noreferrer"
               className="contact-footer__social"

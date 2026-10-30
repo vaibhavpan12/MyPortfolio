@@ -19,6 +19,5 @@ const images = {
     premove:'/images/pineappleProject.png',
     pineverse:'/images/pineverseProject.png',
     Pivora:'/images/Pivora.png'
-
 }
 export default images

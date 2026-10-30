@@ -249,7 +249,7 @@ const Contact = () => {
                 <span className="vp-contact-side-label">EMAIL</span>
 
                 <a
-                  href="mailto:your-email@example.com"
+                  href="mailto:vaibhavpan7558@gmail.com"
                   className="vp-contact-email"
                 >
                   Let's talk
@@ -291,7 +291,7 @@ const Contact = () => {
 
                   <a
                     className="vp-contact-social"
-                    href="https://github.com/vaibhavdkjbdjchv?tab=repositories"
+                    href="https://github.com/vaibhavpan12"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub"
