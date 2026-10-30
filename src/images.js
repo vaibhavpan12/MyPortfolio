@@ -17,6 +17,8 @@ const images = {
     swt: '/images/SWT.png',
     estroverse: '/images/estroverse.png',
     premove:'/images/pineappleProject.png',
-    pineverse:'/images/pineverseProject.png'
+    pineverse:'/images/pineverseProject.png',
+    Pivora:'/images/Pivora.png'
+
 }
 export default images
