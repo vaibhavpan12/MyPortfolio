@@ -36,8 +36,8 @@ const projects = [
       "Llama 3.2 (3B)",
     ],
     link: "https://pivoraai.vercel.app/",
-    linkText: "GitHub",
-    icon: faGithub,
+    linkText: "Live",
+    icon: faArrowUpRightFromSquare,
     featured: true,
   },
 
