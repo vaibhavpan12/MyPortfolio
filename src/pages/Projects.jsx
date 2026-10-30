@@ -35,7 +35,7 @@ const projects = [
       "Ollama",
       "Llama 3.2 (3B)",
     ],
-    link: "https://github.com/vaibhavpan12/Pivora.git",
+    link: "https://pivoraai.vercel.app/",
     linkText: "GitHub",
     icon: faGithub,
     featured: true,
