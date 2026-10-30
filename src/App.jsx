@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import "./App.css";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 
 import Certificates from "./pages/Certificates";
 import Home from "./pages/Home";
@@ -9,10 +9,16 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import CreativeNav from "../components/Header";
 // import Orders from "./pages/Orders";
+function SharedNavigation() {
+  const { pathname } = useLocation();
+  const pageHasItsOwnNavigation = ["/about", "/projects"].includes(pathname.toLowerCase());
+  return pageHasItsOwnNavigation ? null : <CreativeNav />;
+}
+
 function App() {
   return (
     <BrowserRouter>
-    <CreativeNav/>
+      <SharedNavigation />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 
 function CreativeNav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const menuItems = [
     {
@@ -34,12 +35,11 @@ function CreativeNav() {
           NAVBAR
       ========================= */}
 
-      <header className="creative-nav">
+      <header className={`creative-nav ${location.pathname === "/" ? "creative-nav-home" : ""}`}>
         {/* LOGO */}
 
         <Link to="/" className="creative-logo">
           <span className="logo-circle"></span>
-
           <span>VP</span>
         </Link>
 
@@ -47,7 +47,6 @@ function CreativeNav() {
 
         <div className="nav-middle">
           <span>Frontend Developer</span>
-
           <span>India</span>
         </div>
 

@@ -6,6 +6,7 @@ import Lenis from "lenis";
 import "../assets/css/Home.css";
 
 import images from "../images";
+import PortraitParticles from "../../components/PortraitParticles";
 
 import {
   faArrowDown,
@@ -15,7 +16,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faReact, faNodeJs, faJs } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CreativeNav from "../../components/Header";
 import "../assets/css/Project.css";
 import Footer from "../../components/Footer";
 
@@ -69,10 +69,6 @@ const skills = [
 export default function Home() {
   const mainRef = useRef(null);
   const heroRef = useRef(null);
-  const orbRef = useRef(null);
-  const imageOneRef = useRef(null);
-  const imageTwoRef = useRef(null);
-  const imageThreeRef = useRef(null);
   const titleRef = useRef(null);
   const skillsProgressRef = useRef(null);
 
@@ -142,68 +138,6 @@ export default function Home() {
           },
           "-=0.3",
         );
-
-      /* ==========================================
-       HERO ORB PARALLAX
-    ========================================== */
-
-      gsap.to(orbRef.current, {
-        y: -100,
-        x: 40,
-        rotation: 20,
-        scale: 1.08,
-        ease: "none",
-
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 0.6,
-        },
-      });
-
-      /* ==========================================
-       IMAGE PARALLAX
-    ========================================== */
-
-      gsap.to(imageOneRef.current, {
-        y: -180,
-        rotate: -5,
-        ease: "none",
-
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 0.6,
-        },
-      });
-
-      gsap.to(imageTwoRef.current, {
-        y: -90,
-        rotate: 5,
-        ease: "none",
-
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 0.6,
-        },
-      });
-
-      gsap.to(imageThreeRef.current, {
-        y: -240,
-        rotate: 8,
-        ease: "none",
-
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 0.6,
-        },
-      });
 
       /* ==========================================
        HERO SCALE
@@ -387,22 +321,6 @@ export default function Home() {
           NAVBAR
       ========================================== */}
 
-        <CreativeNav />
-      {/* <header className="creative-nav">
-        <Link to="/" className="creative-logo">
-          <span className="logo-circle"></span>
-          <span>VP</span>
-        </Link>
-
-        <div className="nav-middle">
-          <span>Frontend Developer</span>
-          <span>India</span>
-        </div>
-        <Link to="/contact" className="menu-button">
-          <span>Menu</span>
-          <span className="menu-icon">↗</span>
-        </Link>
-      </header> */}
 
       {/* =========================================
           HERO
@@ -411,75 +329,29 @@ export default function Home() {
       <section ref={heroRef} className="hero-section">
         <div className="hero-inner">
           <div className="hero-top">
-            <span className="hero-small-text">DIGITAL EXPERIENCE</span>
-
-            <span className="hero-number">01 / 05</span>
+            <span className="hero-small-text">● &nbsp; ENGINEER · DEVELOPER · BUILDER</span>
+            <span className="hero-number">BASED IN INDIA · OPEN TO WORK</span>
           </div>
+
+          <div className="hero-presence" aria-label="Full stack developer, web and mobile products">
+            <span>01 / PRESENCE</span>
+            <strong>FULL-STACK<br />WEB &amp; MOBILE<br />AI PRODUCTS</strong>
+          </div>
+
+          <PortraitParticles imageUrl={images.profile} className="hero-particles-layer" />
 
           <div ref={titleRef} className="hero-title">
-            <div className="hero-title-line">
-              <div className="hero-line-wrap">
-                <span className="hero-line">Creative</span>
-              </div>
-            </div>
-
-            <div className="hero-title-line hero-title-indent">
-              <div className="hero-line-wrap">
-                <span className="hero-line">Web</span>
-              </div>
-            </div>
-
-            <div className="hero-title-line">
-              <div className="hero-line-wrap">
-                <span className="hero-line hero-outline">Developer</span>
-              </div>
-            </div>
+            <div className="hero-title-line"><div className="hero-line-wrap"><span className="hero-line">Vaibhav Panchal</span></div></div>
           </div>
 
-          {/* ORB */}
+          <p className="hero-description">I build products, websites and digital experiences that turn ideas into something people can use.</p>
 
-          <div ref={orbRef} className="hero-orb">
-            <div className="orb-inner"></div>
-            <div className="orb-highlight"></div>
+          <div className="hero-actions">
+            <Link to="/projects" className="hero-primary-link">Explore my work <FontAwesomeIcon icon={faArrowDown} /></Link>
+            <Link to="/Contact" className="hero-secondary-link">Start a conversation <span>↗</span></Link>
           </div>
 
-          {/* FLOATING IMAGE 1 */}
-
-          <div ref={imageOneRef} className="floating-image floating-image-one">
-            <img src={images.flaashnet} alt="Project" />
-          </div>
-
-          {/* FLOATING IMAGE 2 */}
-
-          <div ref={imageTwoRef} className="floating-image floating-image-two">
-            <img src={images.gemini} alt="Project" />
-          </div>
-
-          {/* FLOATING IMAGE 3 */}
-
-          <div
-            ref={imageThreeRef}
-            className="floating-image floating-image-three"
-          >
-            <img src={images.beyoundchat} alt="Project" />
-          </div>
-
-          <div className="hero-bottom">
-            <p className="hero-description">
-              I design and build digital experiences where technology, motion
-              and visual storytelling come together.
-            </p>
-
-            <div className="hero-actions">
-              <Link to="/projects" className="circle-link">
-                <span>Explore</span>
-
-                <FontAwesomeIcon icon={faArrowDown} />
-              </Link>
-
-              <span className="hero-location">Based in India</span>
-            </div>
-          </div>
+          <span className="hero-caption">A HUMAN PERSPECTIVE ON TECHNOLOGY</span>
         </div>
       </section>
 
