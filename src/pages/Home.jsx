@@ -502,20 +502,21 @@ export default function Home() {
             <span className="about-word">I</span>{" "}
             <span className="about-word">build</span>{" "}
             <span className="about-word">digital</span>{" "}
-            <span className="about-word">experiences</span>{" "}
-            <span className="about-word">that</span>{" "}
-            <span className="about-word">feel</span>{" "}
-            <span className="about-word">alive.</span>
+            <span className="about-word">products</span>{" "}
+            <span className="about-word">from</span>{" "}
+            <span className="about-word">idea</span>{" "}
+            <span className="about-word">to</span>{" "}
+            <span className="about-word">launch.</span>
           </h2>
 
           <div className="about-bottom">
             <p>
-              From interfaces and animations to full-stack applications, I enjoy
-              turning ideas into polished products.
+              I build full-stack web and mobile products with React, Node.js and
+              React Native—from a clear interface to the API behind it.
             </p>
 
             <Link to="/about" className="text-link">
-              More about me
+              Meet Vaibhav
               <span>↗</span>
             </Link>
           </div>
@@ -595,22 +596,28 @@ export default function Home() {
         <div className="project-track">
           {/* PROJECT 01 */}
 
-          <Link to="/projects" className="project-card project-card-one">
-            <div className="project-number">01</div>
+          <a
+            href="https://pivoraai.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Pivora, AI-powered e-commerce website"
+            className="project-card project-card-one"
+          >
+            <div className="project-number">01 / FEATURED PROJECT</div>
 
             <div className="project-image">
-              <img src={images.boat} alt="Project" />
+              <img src={images.Pivora} alt="Pivora AI-powered shopping website" />
             </div>
 
             <div className="project-info">
               <div>
-                <span>01</span>
-                <h3>Digital Experience</h3>
+                <span>LIVE · AI E-COMMERCE</span>
+                <h3>Pivora</h3>
               </div>
 
               <span className="project-arrow">↗</span>
             </div>
-          </Link>
+          </a>
 
           {/* PROJECT 02 */}
 
