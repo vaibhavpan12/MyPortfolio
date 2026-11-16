@@ -55,7 +55,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/vaibhav-panchal12"
+              href="https://www.linkedin.com/in/vaibhav1223/"
               target="_blank"
               rel="noopener noreferrer"
               className="contact-footer__social"
